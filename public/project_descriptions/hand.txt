@@ -1,0 +1,105 @@
+🎯 Project Objective:
+To develop a real-time system capable of recognizing hand gestures using computer vision and deep learning, enabling users to control YouTube video playback functions (like play, pause, volume control, forward, backward, etc.) through intuitive hand gestures without touching the keyboard or mouse.
+
+🧠 Overview:
+In this project, we design a robust gesture recognition system that utilizes MediaPipe Hands for real-time hand tracking and landmark extraction, and a hybrid CNN-LSTM model for sequential gesture classification. The goal is to allow users to control YouTube playback seamlessly using predefined hand gestures by recognizing temporal and spatial movement patterns.
+
+The system bridges human-computer interaction (HCI) and automation, offering a hands-free, accessible, and intuitive interface.
+
+⚙️ Technology Stack:
+Programming Language: Python
+
+Libraries/Frameworks: OpenCV, MediaPipe, TensorFlow/Keras, NumPy, PyAutoGUI
+
+Model Architecture: CNN + LSTM
+
+Dataset Used: Hand Gesture Recognition Database (converted to .npy sequences of hand landmarks)
+
+Input Data: 63 keypoints per frame (21 landmarks × 3 dimensions: x, y, z)
+
+Output Classes: Custom gestures like Play, Pause, Volume Up, Volume Down, Forward, Rewind, etc.
+
+🧩 System Modules:
+Data Collection & Preprocessing:
+
+MediaPipe used to detect and extract hand landmarks.
+
+Each gesture is recorded as a sequence of 30 frames (time-series data).
+
+Keypoint data is stored in .npy format for model training.
+
+Model Training:
+
+CNN layers extract spatial features from hand landmark sequences.
+
+LSTM layers capture the temporal patterns across the sequence.
+
+Model is trained to classify gesture sequences into predefined commands.
+
+Real-Time Gesture Prediction:
+
+Continuously captures webcam input.
+
+Detects hand landmarks using MediaPipe in real time.
+
+Stores the last 30 frames and passes them to the trained CNN-LSTM model.
+
+Predicts the gesture and triggers appropriate action via PyAutoGUI.
+
+Action Mapping:
+
+Each predicted gesture is mapped to a specific YouTube action:
+
+✋ "Open palm" → Pause
+
+🤘 "Two fingers" → Play
+
+👆 "One finger up" → Volume Up
+
+👇 "One finger down" → Volume Down
+
+👉 "Right swipe" → Forward
+
+👈 "Left swipe" → Rewind
+
+💡 Key Innovations:
+Combines spatial (CNN) and temporal (LSTM) features to improve gesture accuracy.
+
+Utilizes MediaPipe Hands for lightweight and accurate landmark detection.
+
+Enables real-time gesture classification with minimal delay.
+
+Integrates PyAutoGUI for automating browser-level YouTube control, making the system usable without modifying the website or browser settings.
+
+🧪 Evaluation Metrics:
+Accuracy: Measures correct gesture classification rate.
+
+Precision/Recall/F1-Score: Evaluates the performance per gesture class.
+
+Confusion Matrix: Analyzes misclassified gestures.
+
+Latency: Measures the system’s responsiveness from gesture to action.
+
+📈 Results:
+Model achieved ~95% validation accuracy on the custom dataset.
+
+Smooth and accurate real-time prediction with an average latency < 0.2 seconds.
+
+Gesture recognition works under varying lighting conditions and hand positions with high reliability.
+
+🛠️ Challenges Faced:
+Handling background noise and occlusion in webcam feed.
+
+Managing different hand orientations and sizes.
+
+Maintaining consistent performance across users with different hand shapes.
+
+🌐 Future Scope:
+Expand to multi-hand gesture recognition.
+
+Train on larger and more diverse datasets to improve generalization.
+
+Integrate with smart TV or browser extensions.
+
+Add voice commands for hybrid multimodal control.
+
